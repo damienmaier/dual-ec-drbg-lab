@@ -1,3 +1,7 @@
+"""
+Original sage file for the Dual EC PRNG 2
+"""
+
 class RNG2:
     def __init__(self):
         p = 115792089210356248762697446949407573530086143415290314195533631308867097853951
