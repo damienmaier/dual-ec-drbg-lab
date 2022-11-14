@@ -62,3 +62,9 @@ We have :
 
 **= [l Q<sub>2</sub> + Q<sub>2</sub>]<sub>x</sub> = [(l+1) Q<sub>2</sub>]<sub>x</sub>**
 
+## 2
+
+- We work in the elliptic curve [P-256](https://neuromancer.sk/std/nist/P-256)
+- **P** and **Q** are points on the elliptic curve
+- **n** is the order of the elliptic curve
+
