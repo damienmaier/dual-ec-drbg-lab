@@ -111,13 +111,13 @@ By the statement that we have proven in part 1, we know that if we multiply the 
 
 Therefore, we multiply each candidate from step 2 by **inv_d** and as a result we get several candidates, one of which is the correct value for **state1 * P** or the opposite of **state1 * P**.
 
-### Step 4 : find state1 candidates
+### Step 4 : find state2 candidates
 
-We apply **[·]<sub>x</sub>** to each candidate from step 3. We know that one of the resulting values is the correct value for **state1**.
+We apply **[·]<sub>x</sub>** to each candidate from step 3. We know that one of the resulting values is the correct value for **state2**.
 
-### Step 5 : find the right state1
+### Step 5 : find the right state2
 
-For each **state1** candidate, we apply the operation **[· Q]x >> 8**. This gives us the output of the PRNG if the candidate was the state. Among the candidates, the right **state1** is the one that corresponds to **output2**.
+For each **state2** candidate, we apply the operation **[· Q]x >> 8**. This gives us the output of the PRNG if the candidate was the state. Among the candidates, the right **state2** is the one that corresponds to **output2**.
 
 ### Clone the PRNG
 
