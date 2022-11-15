@@ -169,7 +169,7 @@ Now, from the PRNG algorithm we have :
 
 **[state1 P]<sub>x</sub> + e &Congruent; state2 (mod n)** and **0 &leq; e < 2<sup>20</sup>**
 
-This allows us to put bounds on the value of **state2** :
+This allows us to put bounds on the value of (a value congruent to) **state2** :
 
 **[state1 P]<sub>x</sub> &leq; state2 < [state1 P]<sub>x</sub> + 2<sup>20</sup>**
 
