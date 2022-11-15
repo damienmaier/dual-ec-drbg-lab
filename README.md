@@ -3,7 +3,7 @@
 ## 1
 
 Let **[&middot;]<sub>x</sub>** be a function returning the x-coordinate of a point on a (Weierstrass) elliptic curve **E**.<br>
-Let **lift_x(.)** be a function taking as argument an x-coordinate of a point and returns all the possible points with this x-coordinate.<br>
+Let **lift_x(.)** be a function taking as argument an x-coordinate of a point and returning all the possible points with this x-coordinate.<br>
 Let **P<sub>x</sub>** be an x-coordinate ant let **S = lift_x(P<sub>x</sub>)** be the set of points having **P<sub>x</sub>** as x-coordinate.
 
 We show the following statement :
