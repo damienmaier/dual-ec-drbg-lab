@@ -76,7 +76,7 @@ To do this, we start from **output1** and we go upward in the diagram by applyin
 
 Once **state2** is known, we use it to generate the subsequent outputs.
 
-The code for this attack is implemented in the function `clone_dual_ec2_drbg` of the file `dualec_attack.py`.
+The code for this attack is implemented in the function `clone_dual_ec_drbg` of the file `dualec_attack.py`.
 
 ### Step 1 : truncation bruteforce
 
