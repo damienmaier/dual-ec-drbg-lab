@@ -8,17 +8,15 @@ Let **P<sub>x</sub>** be an x-coordinate ant let **S = lift_x(P<sub>x</sub>)** b
 
 We show the following statement :
 
-#### For any constant **l &in; &Zopf;<sup>*</sup>**, if **0 &notin; S**, then for all **Q &in; S, [lQ]<sub>x</sub>** is the same.
+#### For any constant l &in; &Zopf;<sup>*</sup>, if 0 &notin; S, then for all Q &in; S, [lQ]<sub>x</sub> is the same.
 
-**S** can contain 0, 1 or 2 points.
-
-If **|S| = 0** or **|S| = 1**, the statement is trivially true.
+**S** can contain 0, 1 or 2 points. If **|S| = 0** or **|S| = 1**, the statement is trivially true.
 
 For the case **|S| = 2**, we prove the statement by induction :
 
 ### Base step : case l = 1
 
-we want to show that :
+We want to show that :
 
 #### For **Q<sub>1</sub> &in; S, Q<sub>2</sub> &in; S</sub>**: **[1Q<sub>1</sub>]<sub>x</sub> = [1Q<sub>2</sub>]<sub>x</sub>**
 
@@ -32,7 +30,7 @@ Thus, we have **[1Q<sub>1</sub>]<sub>x</sub> = [1Q<sub>2</sub>]<sub>x</sub>**
 
 We want to show that :
 
-#### For **Q<sub>1</sub> &in; S, Q<sub>2</sub> &in; S</sub>** : if **[iQ<sub>1</sub>]<sub>x</sub> = [iQ<sub>2</sub>]<sub>x</sub>** is true for all **i &in; [1, l]**, then **[(l+1) Q<sub>1</sub>]<sub>x</sub> = [(l+1) Q<sub>2</sub>]<sub>x</sub>**
+#### For **Q<sub>1</sub> &in; S, Q<sub>2</sub> &in; S</sub>** : if **[iQ<sub>1</sub>]<sub>x</sub> = [iQ<sub>2</sub>]<sub>x</sub>** is true for all **i &in; [1, l]**, then **[(l+1) Q<sub>1</sub>]<sub>x</sub> = [(l+1) Q<sub>2</sub>]<sub>x</sub>** is also true
 
 To prove this, we are going to use
 
@@ -63,6 +61,9 @@ We have :
 **= [l Q<sub>2</sub> + Q<sub>2</sub>]<sub>x</sub> = [(l+1) Q<sub>2</sub>]<sub>x</sub>**
 
 ## 2
+Here is a diagramof the algorithm:
+
+![](img/schema.drawio.png)
 
 - We work in the elliptic curve [P-256](https://neuromancer.sk/std/nist/P-256)
 - **P** and **Q** are points on the elliptic curve
@@ -77,6 +78,10 @@ To do this, we start from **output1** and we go upward in the diagram by applyin
 Once **state2** is known, we use it to generate the subsequent outputs.
 
 The code for this attack is implemented in the function `clone_dual_ec_drbg` of the file `dualec_attack.py`.
+
+Here is a diagram of the attack : 
+
+![](img/attaque.drawio.png)
 
 ### Step 1 : truncation bruteforce
 
@@ -132,11 +137,17 @@ It searches for the discrete logarithm of several points on a given interval.
 
 Here is a diagram for the second algorithm :
 
+![](img/schema2.drawio.png)
+
 In this algorithm, the state of the PRNG is given by the pair **(state, e)**.
 
 We are going to recover the values of **state** and **e** from **output1** and **output2**. Like for the previous attack, this will allow us to predict the subsequent outputs.
 
 The code for this attack is implemented in the function `clone_dual_ec2_drbg` of the file `dualec_attack.py`.
+
+Here is a diagram of the attack :
+
+![](img/attaque2.drawio.png)
 
 ### Recover [state1 P]<sub>x</sub>
 
@@ -164,7 +175,7 @@ This allows us to put bounds on the value of **state2** :
 
 Using the function described in point 4, we search for the logarithm in base **Q** of both candidates from step 1, in the interval **[ [state1 P]<sub>x</sub>, [state1 P]<sub>x</sub> + 2<sup>20</sup> )**.
 
-Most likely, among the two candidates from step 1, only the logarithm of the correct candidate is in the interval **[ [state1 P]<sub>x</sub>, [state1 P]<sub>x</sub> + 2<sup>20</sup> )**, and thus the resulting value is **state2**.
+Most likely, among the two candidates from step 1, only the logarithm of the correct candidate is in the interval **[ [state1 P]<sub>x</sub>, [state1 P]<sub>x</sub> + 2<sup>20</sup> )**, and thus the resulting value is (congruent to) **state2**.
 
 ### Recover e
 
