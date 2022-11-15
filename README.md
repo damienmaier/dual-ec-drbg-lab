@@ -113,11 +113,11 @@ Therefore, we multiply each candidate from step 2 by **inv_d** and as a result w
 
 ### Step 4 : find state1 candidates
 
-We apply **[·]<sub>x</sub>** to each candidate from step 3. We know that one of the resulting values is the correct value for **step1**.
+We apply **[·]<sub>x</sub>** to each candidate from step 3. We know that one of the resulting values is the correct value for **state1**.
 
 ### Step 5 : find the right state1
 
-For each **step1** candidate, we apply the operation **[· Q]x >> 8**. This gives us the output of the PRNG if the candidate was the state. Among the candidates, the right **step1** is the one that corresponds to **output2**.
+For each **state1** candidate, we apply the operation **[· Q]x >> 8**. This gives us the output of the PRNG if the candidate was the state. Among the candidates, the right **state1** is the one that corresponds to **output2**.
 
 ### Clone the PRNG
 
