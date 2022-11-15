@@ -136,6 +136,8 @@ In this algorithm, the state of the PRNG is given by the pair **(state, e)**.
 
 We are going to recover the values of **state** and **e** from **output1** and **output2**. Like for the previous attack, this will allow us to predict the subsequent outputs.
 
+The code for this attack is implemented in the function `clone_dual_ec2_drbg` of the file `dualec_attack.py`.
+
 ### Recover [state1 P]<sub>x</sub>
 
 We recover **[state1 P]<sub>x</sub>** in a way similar to the previous attack, except this algorithm doesn't include a truncation and thus no bruteforce is necessary.
