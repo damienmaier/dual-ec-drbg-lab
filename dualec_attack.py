@@ -39,22 +39,22 @@ def clone_dual_ec_drbg(output1, output2):
     return rng
 
 
-def discrete_logarithm(base_point, values):
-    m = 2**10
+def discrete_logarithm(base_point, values, min, max):
+    m = int(math.sqrt(max - min))
 
     pairs = dict()
-    base_point_to_the_j = base_point.parent(0)
-    for j in range(m):
+    base_point_to_the_j = 0 * base_point
+    for j in range(0, m):
         pairs[base_point_to_the_j] = j
         base_point_to_the_j += base_point
 
     base_point_to_minus_m = -m * base_point
 
-    y_values = values[:]
-    for i in range(m):
+    y_values = list(map(lambda y: y - min * base_point, values))
+    for i in range(0, m):
         found_y_values = list(filter(lambda y: y in pairs, y_values))
         if found_y_values:
-            return i * m + pairs[found_y_values[0]]
+            return min + i * m + pairs[found_y_values[0]]
         y_values = list(map(lambda y: y + base_point_to_minus_m, y_values))
 
 
@@ -63,14 +63,16 @@ def clone_dual_ec2_drbg(output1, output2):
     rng = dualec2.RNG2()
 
     lifted_output2 = lift_x(output2)
-    next_state_but_e_missing = next_state(lift_x(output1)[0])
+    state2_minus_e = next_state(lift_x(output1)[0])
 
-    exponent = discrete_logarithm(
+    state2 = discrete_logarithm(
         rng.Q,
-        [lifted_output2[0] - next_state_but_e_missing * rng.Q, lifted_output2[1] - next_state_but_e_missing * rng.Q]
+        lifted_output2,
+        state2_minus_e,
+        state2_minus_e + 2**20
     )
 
-    rng.state = next_state_but_e_missing + exponent
-    rng.e = exponent
+    rng.state = state2
+    rng.e = state2 - state2_minus_e
 
     return rng

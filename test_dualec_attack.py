@@ -29,6 +29,7 @@ class Test(TestCase):
         Q = elliptic_curve.lift_x(
             Integer(48427683432535470441420506435187576850614353788067201511820511758658877995605))
 
-        exponent = 2 ** 20-1
+        min = 1327
+        exponent = min + 2**20 - 1
 
-        self.assertEqual(exponent, dualec_attack.discrete_logarithm(Q, [exponent * Q, 2 ** 100 * Q]))
+        self.assertEqual(exponent, dualec_attack.discrete_logarithm(Q, [exponent * Q], min, min + 2**20))
